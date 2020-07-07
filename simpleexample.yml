@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simpleexample
+  labels:
+    app: simpleexample
+spec:
+  containers:
+  - name: private-reg-container
+    image: santiago762000/simpleexample:latest
+    ports:
+    - name: mypodport
+      containerPort: 8080
+    #env:
+    #  - name: myenvvar
+    #    value: "Hello from Kubernetes"
+
+    env:
+      - name: myenvvar
+        valueFrom:
+          secretKeyRef:
+            name: myenvvar
+            key: myenvvar
+
+  imagePullSecrets:
+  - name: regcred
