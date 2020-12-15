@@ -1,0 +1,15 @@
+version: "2"
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: nodejs
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - dbURL=asdasdasd
+    ports:
+      - "80:8080"
+#    command: /usr/src/app/node_modules/.bin/node server.js
